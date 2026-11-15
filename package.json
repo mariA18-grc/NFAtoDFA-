@@ -1,0 +1,27 @@
+{
+  "name": "nfatodfa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "web": "node app.js",
+    "cli": "node cli.js",
+    "sets": "node cli.js --sets",
+    "tables": "node cli.js --tables",
+    "sdd": "node cli.js --sdd",
+    "sdd-info": "node cli.js --sdd-info",
+    "sdd-circular": "node cli.js --sdd-circular"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^10.8.1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
