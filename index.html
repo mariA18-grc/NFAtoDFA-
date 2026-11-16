@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador Sintáctico · Lenguajes Formales</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Analizador Sintáctico</h1>
+        <p class="subtitle">
+            FIRST & FOLLOW · LL(1) · SLR(1) · Definición Dirigida por la Sintaxis
+        </p>
+        <p class="subtitle-small">Lenguajes Formales · Aho et al., secciones 4.4 a 5.2</p>
+    </header>
+
+    <main>
+        <!-- ============ 1. GRAMÁTICA ============ -->
+        <section class="card">
+            <h2><span class="num">1</span> La gramática</h2>
+            <p class="hint">
+                Escribe una producción por línea. Usa <code>-&gt;</code> para la flecha, espacios o
+                <code>|</code> para separar alternativas y <code>e</code> para épsilon. El símbolo inicial es <code>S</code>.
+            </p>
+            <textarea id="grammar" rows="5" spellcheck="false">S -> C
+C -> MR
+M -> r g b
+R -> ,MR e</textarea>
+            <div class="buttons">
+                <button id="analyzeGrammarBtn">Analizar gramática</button>
+                <button class="ghost" data-example="S -> C&#10;C -> MR&#10;M -> r g b&#10;R -> ,MR e">Ejemplo: colores</button>
+                <button class="ghost" data-example="S -> aSb&#10;S -> e">Ejemplo: aⁿbⁿ</button>
+            </div>
+            <div id="grammarResult" class="result"></div>
+        </section>
+
+        <!-- ============ 2. ANALIZAR UNA CADENA ============ -->
+        <section class="card">
+            <h2><span class="num">2</span> Analizar una cadena</h2>
+            <p class="hint">
+                <strong>LL(1)</strong> = análisis descendente (sección 4.4).
+                <strong>SLR(1)</strong> = análisis ascendente (secciones 4.5 y 4.6).
+                Usa <code>e</code> para la cadena vacía.
+            </p>
+            <div class="row">
+                <input id="inputString" type="text" placeholder="por ejemplo: r,g,b" spellcheck="false" value="r,g,b">
+                <select id="method">
+                    <option value="LL1">LL(1) · descendente</option>
+                    <option value="SLR1">SLR(1) · ascendente</option>
+                </select>
+                <button id="parseBtn">Analizar</button>
+            </div>
+            <div id="parseResult" class="result"></div>
+        </section>
+
+        <!-- ============ 3. SDD ============ -->
+        <section class="card">
+            <h2><span class="num">3</span> Definición Dirigida por la Sintaxis</h2>
+            <p class="hint">
+                Calcula un puntaje: suma de (peso &times; posición) de cada color, con
+                <code>r=1, g=2, b=3</code>. Por ejemplo <code>r,g,b</code> = 1&times;1 + 2&times;2 + 3&times;3 = <strong>14</strong>.
+                Muestra el árbol anotado, el grafo de dependencias y el orden de evaluación (secciones 5.1 y 5.2).
+            </p>
+            <div class="row">
+                <input id="sddInput" type="text" placeholder="por ejemplo: r,g,b" spellcheck="false" value="r,g,b">
+                <label class="checkbox">
+                    <input type="checkbox" id="circular"> SDD circular (demostrar el ciclo)
+                </label>
+                <button id="sddBtn">Evaluar</button>
+            </div>
+            <div id="sddResult" class="result"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>María Paula Gómez García · la lógica (LL(1), SLR(1), SDD) vive en módulos independientes de HTTP.</p>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>
